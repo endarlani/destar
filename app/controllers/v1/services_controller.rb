@@ -5,7 +5,7 @@ class V1::ServicesController < ApplicationController
 	end
 
 	def create
-		services = Service.new(book_params)
+		services = Service.new(service_params)
 
 		if services.save
 			render json: services, status: :created
@@ -23,7 +23,7 @@ class V1::ServicesController < ApplicationController
 		services = Service.find(params[:id])
 
 		if services.update(service_params)
-			renser json: services, status: :ok
+			render json: services, status: :ok
 		else 
 			render json: { errors: services.errors}, status: :unprocessable_entity
 		end
@@ -38,7 +38,7 @@ class V1::ServicesController < ApplicationController
 	private
 
 	def service_params
-		params.require(:services).permit(:name, :lowest_price, :highest_price, :info, :picture)
+		params.require(:service).permit(:name, :lowest_price, :highest_price, :info, :dete, :picture)
 	end
 	
 end
