@@ -1,0 +1,2 @@
+class OutsiderUser < ApplicationRecord
+end
