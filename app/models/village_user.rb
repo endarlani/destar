@@ -1,6 +1,7 @@
 class VillageUser < ApplicationRecord
+	mount_base64_uploader :picture, PictureUploader
 	has_secure_password
-	
+
 	belongs_to :village
 
 	has_many :detail_users

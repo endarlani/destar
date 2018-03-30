@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post 'user_token' => 'user_token#create'
   api_version(:module => "V1", :path => {:value => "v1"}) do
   	resources :admins
   	resources :categorys

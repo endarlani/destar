@@ -6,23 +6,16 @@ class V1::ProductsController < ApplicationController
 
 	def show
 		products = Product.find(params[:id])
-		render json: products, status: :ok
+		render json: { products: products }, status: :ok
 	end
-
-
-
 
 	def create
 		products = Product.new(product_params)
 
-		if product.save
+		if products.save
 			render json: products, status: :created
-			#flash[:success] = "Section Successfully Saved"
-			#redirec_to product
 		else
 			render json: { errors: products.errors }, status: :unprocessable_entity
-			#flash[:error] = "Section Was Not Saved"
-			#render :new
 		end
 	end
 
@@ -47,6 +40,6 @@ class V1::ProductsController < ApplicationController
 	private
 
 	def product_params
-		params.require(:product).permit(:name, :price, :picture, :date, :rating, :info)
+		params.require(:product).permit(:name, :price, :picture, :date, :rating, :info, :category_id)
 	end
 end
