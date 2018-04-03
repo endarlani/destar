@@ -1,12 +1,43 @@
 class V1::ProductsController < ApplicationController
+	# def index
+	# 	products = Product.all
+	# 	render json: products, status: :ok 
+	# end
+
+
 	def index
-		products = Product.all
-		render json: products, status: :ok 
+		
+		list_product = Product.all.map{|val| 
+			{
+				:picture => val.picture,
+				:nama => val.name, 
+				:price => val.price,
+				:category => val.category.name
+			} 
+		}
+		# .select{|d| d[:rating] == 5}
+
+		render json:  list_product, status: :ok
 	end
 
+
+
+
 	def show
-		products = Product.find(params[:id])
-		render json: { products: products }, status: :ok
+		show_product = Product.all.map{|val| 
+			{
+				:id => val.id, 
+				:picture => val.picture,
+				:price => val.price,
+				:rating => val.rating,
+				:nama => val.name, 
+				:info => val.info,				
+				:category => val.category.name
+			} 
+		}.find{|d| d[:id]}
+		
+
+		render json:  show_product, status: :ok
 	end
 
 	def create
