@@ -6,7 +6,35 @@ class V1::ProductsController < ApplicationController
 
 
 	def index
-		
+	if params[:price] == "asc"
+		list_product = Product.all.order(price: :asc).map{|val| 
+			{
+				:picture => val.picture,
+				:nama => val.name, 
+				:price => val.price,
+				:category => val.category.name
+			} 
+		}
+	elsif params[:price] == "desc"
+		list_product = Product.all.order(price: :desc).map{|val| 
+			{
+				:picture => val.picture,
+				:nama => val.name, 
+				:price => val.price,
+				:category => val.category.name
+			} 
+		}
+	elsif params[:date] == "desc"
+		list_product = Product.all.order(price: :desc).map{|val| 
+			{
+				:picture => val.picture,
+				:nama => val.name, 
+				:price => val.price,
+				:date => val.date,
+				:category => val.category.name
+			} 
+		}
+	else
 		list_product = Product.all.map{|val| 
 			{
 				:picture => val.picture,
@@ -15,29 +43,16 @@ class V1::ProductsController < ApplicationController
 				:category => val.category.name
 			} 
 		}
-		# .select{|d| d[:rating] == 5}
-
-		render json:  list_product, status: :ok
 	end
 
+	render json: list_product, status: :ok
+end
 
 
 
 	def show
-		show_product = Product.all.map{|val| 
-			{
-				:id => val.id, 
-				:picture => val.picture,
-				:price => val.price,
-				:rating => val.rating,
-				:nama => val.name, 
-				:info => val.info,				
-				:category => val.category.name
-			} 
-		}.find{|d| d[:id]}
-		
-
-		render json:  show_product, status: :ok
+		show_product = Product.find(params[:id])
+		render json: show_product, status: :ok
 	end
 
 	def create
@@ -71,6 +86,6 @@ class V1::ProductsController < ApplicationController
 	private
 
 	def product_params
-		params.require(:product).permit(:name, :price, :picture, :date, :rating, :info, :category_id)
+		params.require(:product).permit(:name, :price, :picture, :date, :rating, :info, :category_id, :category_name)
 	end
 end

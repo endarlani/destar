@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   	resources :services
   	resources :villages
   	resources :village_users
+
+    # get "product/find", to: "product/find"
   	# ?post "admin/login", to: "admin/"
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
