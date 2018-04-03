@@ -34,7 +34,7 @@ class V1::ProductsController < ApplicationController
 				:info => val.info,				
 				:category => val.category.name
 			} 
-		}
+		}.find{|d| d[:id]}
 		
 
 		render json:  show_product, status: :ok
