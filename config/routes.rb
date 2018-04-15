@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   	resources :product_barters
   	resources :users
   	resources :villages
+    post 'users/login' => 'users#login'
+    post 'users/auth_token' => 'users#auth_token'
   end
 	constraints subdomain: 'api' do
   end
