@@ -10,7 +10,7 @@
 # villages = Village.all
 
 # users = User.create([
-# 	{name:"", role:"Supplier", password:"jojo123", phone:"0808979809", gender:"male", village: villages.first},
+# 	{name:"Jojo Widodo", role:"Supplier", password:"jojo123", phone:"0808979809", gender:"male", village: villages.first},
 # 	{name:"Sugeng Wijoyo", role:"Supplier", password:"sugeng123", phone:"0897099754", gender:"male", village: villages.first},
 # 	{name:"Nur Ningsih", role:"Supplier", password:"ningsih123", phone:"0878172637", gender:"female", village: villages.first},
 # 	{name:"Aji Permana", role:"Supplier", password:"Maruf123", phone:"0812838490", gender:"male", village: villages.first},

@@ -3,22 +3,27 @@ class V1::UsersController < ApplicationController
 
 	def index
 		users = User.all
-		render json: users, status: :ok
+		user = []
+		users.each do |u|
+			data = u.as_json(except: [:password_digest]).merge(village: u.village.as_json(only: [:id,:name]))
+			user.push(data)
+		end
+		render json: user, status: :ok
 	end
 
 	def create
-		users = User.new(user_params)
-
-		if users.save
-			render json: users, status: :ok
+		user = User.new(user_params)
+		if user.save
+			render json: user, status: :created
 		else
-			render json: { errors: users.errors}, status: :unprocessable_entity
+			render json: { error: user.errors}, status: :unprocessable_entity
 		end
 	end
 
 	def show
-		users = User.find(params[:id])
-		render json: users, status: :ok
+		user = User.find(params[:id])
+		user = user.as_json(except: [:password_digest]).merge(village: user.village.as_json(only: [:id,:name]))
+		render json: user, status: :ok
 	end
 
 	def update
@@ -27,7 +32,7 @@ class V1::UsersController < ApplicationController
 		if users.update(user_params)
 			render json: users, status: :ok
 		else
-			render json: { errors: users.errors}, status: :unprocessable_entity
+			render json: { error: users.errors}, status: :unprocessable_entity
 		end
 	end
 
@@ -47,7 +52,7 @@ class V1::UsersController < ApplicationController
 		end
 	end
 	
-	def auth_token
+	def token
 		decoded = JWT.decode(request.headers['Authorization'],  Rails.application.secrets.secret_key_base)[0]
 		render json: User.find(decoded["user_id"])
 	end
@@ -55,6 +60,6 @@ class V1::UsersController < ApplicationController
 	private
 	
 	def user_params
-		params.permit(:name,:role,:password,:phone,:gender,:picture,:village_id,:filter)
+		params.permit(:name,:role,:password,:phone,:gender,:picture,:village_id)
 	end
 end

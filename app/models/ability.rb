@@ -32,13 +32,18 @@ class Ability
     if user.admin? 
         can :manage, :all
     elsif user.seller?
-        can :update, User
-        can [:create,:update,:delete], Product
+        can :read, :all
+        can :token, User
+        can :update, User, id: user.id
+        can :create, Product
+        can [:update,:delete], Product, id: user.id
     elsif user.customer?
+        can :read, :all
+        can :token, User
         can [:create,:update,:delete], ProductBarter
     else
         can :read, :all
-        can [:create,:login,:auth_login], User
+        can [:create,:login], User
     end
   end
 

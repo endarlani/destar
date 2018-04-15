@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   api_version(:module => "V1", :path => {:value => "v1"}) do
+    post 'users/login' => 'users#login'
+    get 'users/token' => 'users#token'
   	resources :barters
   	resources :products
   	resources :product_barters
   	resources :users
   	resources :villages
-    post 'users/login' => 'users#login'
-    post 'users/auth_token' => 'users#auth_token'
   end
 	constraints subdomain: 'api' do
   end
