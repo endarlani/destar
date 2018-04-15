@@ -1,6 +1,13 @@
 class V1::ProductBartersController < ApplicationController
 	def index
-		product_barters = ProductBarter.all
+			product_barters = ProductBarter.all.map{|val|
+				{
+					:picture => val.picture,
+					:name => val.name,
+					:description => val.description,
+					:user => val.user.name
+				}
+			}
 		render json:  product_barters, status: :ok
 	end
 
@@ -18,6 +25,7 @@ class V1::ProductBartersController < ApplicationController
 		product_barters = ProductBarter.find(params[:id])
 		render json: product_barters, status: :ok
 	end
+
 
 	def update
 		product_barters = ProductBarter.find(params[:id])

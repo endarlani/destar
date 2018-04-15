@@ -1,6 +1,55 @@
 class V1::ProductsController < ApplicationController
 	def index
-		products = Product.all
+		if params[:status] == "pending"
+			products = Product.where(status: "pending").map{|val|
+				{
+					:picture => val.picture,
+					:name => val.name, 
+					:price => val.highest_price,
+					:status => val.status
+				}
+
+			}
+		elsif params[:status] == "decline"
+			products = Product.where(status: "decline").map{|val|
+				{
+					:picture => val.picture,
+					:name => val.name, 
+					:price => val.highest_price,
+					:status => val.status
+				}
+
+			}
+		elsif params[:status] == "active"
+			products = Product.where(status: "active").map{|val|
+				{
+					:picture => val.picture,
+					:name => val.name, 
+					:price => val.highest_price,
+					:status => val.status
+				}
+
+			}
+		elsif params[:status] == "pending"
+			products = Product.where(status: "nonactive").map{|val|
+				{
+					:picture => val.picture,
+					:name => val.name, 
+					:price => val.highest_price,
+					:status => val.status
+				}
+
+			}
+		else
+			products = Product.all.map{|val|
+				{
+					:picture => val.picture,
+					:name => val.name, 
+					:price => val.highest_price,
+					:village => val.village.name
+				}
+			}
+		end
 		render json: products, status: :ok
 	end
 
@@ -36,7 +85,7 @@ class V1::ProductsController < ApplicationController
 	end
 
 	private
-	
+
 	def product_params
 		params.require(:product).permit(:name)
 	end
