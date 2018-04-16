@@ -46,3 +46,4 @@ end
 
 gem 'factory_bot'
 gem 'versionist'
+gem 'jwt'

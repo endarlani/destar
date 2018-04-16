@@ -15,4 +15,9 @@ class Product < ApplicationRecord
 	belongs_to :user
 	belongs_to :village
 	has_many :barters
+
+	def user_id
+		self.user.name		
+	end
+
 end

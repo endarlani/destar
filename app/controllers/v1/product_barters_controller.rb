@@ -23,7 +23,7 @@ class V1::ProductBartersController < ApplicationController
 
 	def show
 		product_barters = ProductBarter.find(params[:id])
-		render json: product_barters, status: :ok
+		render json: product_barters, include: :user, only: [:picture, :name, :description], status: :ok
 	end
 
 

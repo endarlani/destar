@@ -65,7 +65,7 @@ class V1::ProductsController < ApplicationController
 
 	def show
 		products = Product.find(params[:id])
-		render json: products, status: :ok
+		render json: products, include: :user, only: [:picture, :name, :description], status: :ok
 	end
 
 	def update
@@ -81,12 +81,13 @@ class V1::ProductsController < ApplicationController
 	def destroy
 		products = Product.find(params[:id])
 		products.destroy
-		head 204
+		render json: {message: "Iklan Anda Sudah Dihapus"}
 	end
 
 	private
 
 	def product_params
-		params.require(:product).permit(:name)
+		params.require(:product).permit(:name, :user_id, :village_id, :product_type, :name, :lowest_price, :highest_price, :status, :description, :picture)
 	end
+
 end
