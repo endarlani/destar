@@ -49,7 +49,7 @@ class V1::UsersController < ApplicationController
 		elsif !user
 			render json: {status: "not found", error: "User not found"}, status: 404
 		else
-			render json: {status: "failed", error: "Wrong assword"}, status: 403
+			render json: {status: "failed", error: "Wrong password"}, status: 403
 		end
 	end
 	
