@@ -43,6 +43,7 @@ class V1::ProductsController < ApplicationController
 		else
 			products = Product.all.map{|val|
 				{
+					:id => val.id,
 					:picture => val.picture,
 					:name => val.name, 
 					:price => val.highest_price,

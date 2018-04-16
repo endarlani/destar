@@ -2,6 +2,7 @@ class V1::ProductBartersController < ApplicationController
 	def index
 			product_barters = ProductBarter.all.map{|val|
 				{
+					:id => val.id,
 					:picture => val.picture,
 					:name => val.name,
 					:description => val.description,
