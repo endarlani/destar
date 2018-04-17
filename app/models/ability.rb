@@ -36,6 +36,9 @@ class Ability
         can :token, User
         can :update, User, id: user.id
         can :manage, Product, user_id: user.id
+        can :update, Barter do |barter|
+            barter.product.user_id == user.id
+        end
     elsif user.customer?
         can :read, :all
         can :token, User
