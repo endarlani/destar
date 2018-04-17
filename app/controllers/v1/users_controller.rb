@@ -30,6 +30,7 @@ class V1::UsersController < ApplicationController
 	def update
 		user = User.find(params[:id])
 		if user.update(user_params)
+		user = user.as_json(except: [:password_digest]).merge(village: user.village.as_json(only: [:id,:name]))
 			render json: user, status: :ok
 		else
 			render json: {error: user.errors}, status: :unprocessable_entity
