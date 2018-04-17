@@ -46,6 +46,9 @@ end
 
 gem 'factory_bot'
 gem 'versionist'
-gem 'jwt'
 gem 'carrierwave-base64'
-gem 'carrierwave'
+
+gem 'jwt'
+gem 'cancancan', '~> 2.0'
+gem 'carrierwave', '~> 1.0'
+
