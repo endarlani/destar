@@ -14,6 +14,7 @@ class V1::UsersController < ApplicationController
 	def create
 		user = User.new(user_params)
 		if user.save
+			user = user.as_json(except: [:password_digest]).merge(village: user.village.as_json(only: [:id,:name]))
 			render json: user, status: :created
 		else
 			render json: {error: user.errors}, status: :unprocessable_entity
