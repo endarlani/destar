@@ -1,2 +1,0 @@
-class AdminSu < ApplicationRecord
-end
