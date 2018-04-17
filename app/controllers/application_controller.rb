@@ -21,11 +21,12 @@ class ApplicationController < ActionController::API
 		end
 	end
 
-	rescue_from CanCan::AccessDenied do |exception|
-		render json: {error: exception}
-	end
 	rescue_from StandardError do |exception|
 		render json: {error: exception}
+	end
+	
+	rescue_from CanCan::AccessDenied do |exception|
+		render json: {error: exception}, status: 401
 	end
 
 end

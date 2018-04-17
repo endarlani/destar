@@ -35,12 +35,11 @@ class Ability
         can :read, :all
         can :token, User
         can :update, User, id: user.id
-        can :create, Product
-        can [:update,:delete], Product, id: user.id
+        can :manage, Product, user_id: user.id
     elsif user.customer?
         can :read, :all
         can :token, User
-        can [:create,:update,:delete], ProductBarter
+        can :manage, ProductBarter, user_id: user.id
     else
         can :read, :all
         can [:create,:login], User
