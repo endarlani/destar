@@ -14,6 +14,7 @@ class User < ApplicationRecord
 	validates :phone, presence: true, uniqueness: true
 	validates :password, presence: true, length: { minimum: 6 }
 	validates :role, presence: true
+	# validates :password, :on => :create, presence: true, length: { minimum: 6 }
 
 	enum role: [:admin,:seller,:customer]
 	enum gender: [:male,:female]
