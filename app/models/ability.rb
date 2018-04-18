@@ -43,6 +43,9 @@ class Ability
         can :read, :all
         can :token, User
         can :manage, ProductBarter, user_id: user.id
+        can :update, Barter do |barter|
+            barter.product_barter.user_id == user.id
+        end
     else
         can :read, :all
         can [:create,:login], User
