@@ -1,7 +1,7 @@
 class User < ApplicationRecord
 
 
-mount_base64_uploader :picture, PictureUploader
+	mount_base64_uploader :picture, PictureUploader
 	
 
 	belongs_to :village, optional: true
