@@ -2,7 +2,7 @@ class V1::UsersController < ApplicationController
 	load_and_authorize_resource
 
 	def index
-		users = User.all
+		users = User.all.paginate(:page => params[:page], :per_page => params[:per_page] || 10)
 		user = []
 		users.each do |u|
 			data = u.as_json(except: [:password_digest]).merge(village: u.village.as_json(only: [:id,:name]))
@@ -14,9 +14,10 @@ class V1::UsersController < ApplicationController
 	def create
 		user = User.new(user_params)
 		if user.save
+			user = user.as_json(except: [:password_digest]).merge(village: user.village.as_json(only: [:id,:name]))
 			render json: user, status: :created
 		else
-			render json: { error: user.errors}, status: :unprocessable_entity
+			render json: {error: user.errors}, status: :unprocessable_entity
 		end
 	end
 
@@ -27,18 +28,18 @@ class V1::UsersController < ApplicationController
 	end
 
 	def update
-		users = User.find(params[:id])
-
-		if users.update(user_params)
-			render json: users, status: :ok
+		user = User.find(params[:id])
+		if user.update(user_params)
+			user = user.as_json(except: [:password_digest]).merge(village: user.village.as_json(only: [:id,:name]))
+			render json: user, status: :ok
 		else
-			render json: { error: users.errors}, status: :unprocessable_entity
+			render json: {error: user.errors}, status: :unprocessable_entity
 		end
 	end
 
 	def destroy
-		users = User.find(params[:id])
-		users.destroy
+		user = User.find(params[:id])
+		user.destroy
 		head 204
 	end
 
@@ -47,8 +48,10 @@ class V1::UsersController < ApplicationController
 		if(user && user.authenticate(params[:password]))
 			token =  JWT.encode({user_id: user.id}, Rails.application.secrets.secret_key_base)
 			render json:  user.as_json(only: [:name]).merge(token: token), status: 200
-		else 
-			render status: 403, json: {status: "failed",error: "Wrong Password"}
+		elsif !user
+			render json: {status: "not found", error: "User not found"}, status: 404
+		else
+			render json: {status: "failed", error: "Wrong password"}, status: 403
 		end
 	end
 	

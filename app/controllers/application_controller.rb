@@ -8,11 +8,25 @@ class ApplicationController < ActionController::API
 		end
 	end
 
-
-	rescue_from CanCan::AccessDenied do |exception|
-		render json: {error: exception}
+	#filter json output attributes
+	def filter(var)
+		if(!params[:filter].nil?)
+			rec = []
+			params[:filter].split(',').each  do |a|
+				rec.push(a.to_s)
+			end
+			var.as_json(only: rec)
+		else
+			var
+		end
 	end
+
 	rescue_from StandardError do |exception|
 		render json: {error: exception}
 	end
+	
+	rescue_from CanCan::AccessDenied do |exception|
+		render json: {error: exception}, status: 401
+	end
+
 end
