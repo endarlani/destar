@@ -6,11 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-villages = Village.create([{ name:'Tanjungsari'}, { name: 'Kranggan'}])
+# villages = Village.create([{ name:'Tanjungsari'}, { name: 'Kranggan'}])
 villages = Village.all
 
-# users = User.create([
-# 	{name:"Admin", role:"admin", password:"admin123", phone:"12345", gender:"male", village: villages.first},
+users = User.create([
+	{name:"Admin", role:"admin", password:"admin123", phone:"12345", gender:"male", village: villages.first}
 # 	{name:"Jojo Widodo", role:"seller", password:"jojo123", phone:"0808979809", gender:"male", village: villages.first},
 # 	{name:"Sugeng Wijoyo", role:"seller", password:"sugeng123", phone:"0897099754", gender:"male", village: villages.first},
 # 	{name:"Nur Ningsih", role:"seller", password:"ningsih123", phone:"0878172637", gender:"female", village: villages.first},
@@ -22,8 +22,7 @@ villages = Village.all
 # 	{name:"Uly Lailiya", role:"customer", password:"uly123", phone:"08962345642", gender:"female", village: villages.first},
 # 	{name:"Burhanudin Yusuf", role:"customer", password:"yusuf123", phone:"08129582372", gender:"male", village: villages.first},
 # 	{name:"Arif Rahman", role:"customer", password:"arif123", phone:"082234538294", gender:"male", village: villages.first}
-# ])
-# users = User.all
+])
 
 # products = Product.create ([
 # 	{product_type:"Product", name:"Sapi", highest_price:"10000000", status:"pending", description:"Harga sapi perekor", user_id:2, village_id:1},
@@ -67,29 +66,52 @@ villages = Village.all
 # 	{product_type: "", name:"Tukang Pijat/urut", lowest_price:"50000", highest_price:"100000", status:"", description:"Tidak menerima pijat plus2", user: ""},
 # 	{product_type: "", name:"Kuli", lowest_price:"50000", highest_price:"200000", status:"", user: ""}
 
-])
+# ])
 
-product_barters = ProductBarter.create ([
-	{name:"Telur", description:"Telur 24 butir", user_id:1},
-	{name:"Beras", description:"Beras 5kg", user_id:4},
-	{name:"Kambing", description:"1 ekor", user_id:4},
-	{name:"Ayam", description:"5 ekor ayam jago", user_id:1},
-	{name:"Minyak Makan", description:"Minyak makan 2kg", user_id:2},
-	{name:"Ikan Asin", description:"Ikan Asin 1kg", user_id:3},
-	{name:"Pisang", description:"Pisang 1 tandan", user_id:2},
-	{name:"Tikar Pandan", description:"1 tikar pandan masih baru", user_id:3},
-	{name:"Tepung", description:"Tepung 10kg", user_id:3}
+# product_barters = ProductBarter.create ([
+# 	{name:"Telur", description:"Telur 24 butir", user_id:1},
+# 	{name:"Beras", description:"Beras 5kg", user_id:4},
+# 	{name:"Kambing", description:"1 ekor", user_id:4},
+# 	{name:"Ayam", description:"5 ekor ayam jago", user_id:1},
+# 	{name:"Minyak Makan", description:"Minyak makan 2kg", user_id:2},
+# 	{name:"Ikan Asin", description:"Ikan Asin 1kg", user_id:3},
+# 	{name:"Pisang", description:"Pisang 1 tandan", user_id:2},
+# 	{name:"Tikar Pandan", description:"1 tikar pandan masih baru", user_id:3},
+# 	{name:"Tepung", description:"Tepung 10kg", user_id:3}
 
-])
+# ])
 
-barters = Barter.create ([
-	{product_barter_id:1, product_id:12, status:"done"},
-	{product_barter_id:2, product_id:9, status:"done"},
-	{product_barter_id:3, product_id:1, status:"decline"},
-	{product_barter_id:4, product_id:20, status:"pending"},
-	{product_barter_id:5, product_id:2, status:"pending"},
-	{product_barter_id:6, product_id:8, status:"process"},
-	{product_barter_id:7, product_id:5, status:"decline"},
-	{product_barter_id:8, product_id:2, status:"process"},
-	{product_barter_id:9, product_id:7, status:"done"}
-])
+# barters = Barter.create ([
+# 	{product_barter_id:1, product_id:12, status:"done"},
+# 	{product_barter_id:2, product_id:9, status:"done"},
+# 	{product_barter_id:3, product_id:1, status:"decline"},
+# 	{product_barter_id:4, product_id:20, status:"pending"},
+# 	{product_barter_id:5, product_id:2, status:"pending"},
+# 	{product_barter_id:6, product_id:8, status:"process"},
+# 	{product_barter_id:7, product_id:5, status:"decline"},
+# 	{product_barter_id:8, product_id:2, status:"process"},
+# 	{product_barter_id:9, product_id:7, status:"done"}
+# ])
+
+
+users1 = User.find(1)
+users2 = User.find(2)
+users3 = User.find(3)
+users4 = User.find(4)
+users5 = User.find(5)
+users6 = User.find(6)
+users7 = User.find(7)
+users8 = User.find(8)
+users9 = User.find(9)
+users10 = User.find(10)
+
+users2.update(role:1, gender: 0)
+users2.update(role:1, gender: 0)
+users3.update(role:1, gender: 1)
+users4.update(role:1, gender: 0)
+users5.update(role:1, gender: 0)
+users6.update(role:1, gender: 1)
+users7.update(role:2, gender: 0)
+users8.update(role:2, gender: 1)
+users9.update(role:2, gender: 0)
+users10.update(role:2, gender: 0)
