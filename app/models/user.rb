@@ -1,4 +1,9 @@
 class User < ApplicationRecord
+
+
+	mount_base64_uploader :picture, PictureUploader
+	
+
 	belongs_to :village, optional: true
 	has_many :products
 	has_many :product_barters
