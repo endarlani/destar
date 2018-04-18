@@ -1,7 +1,27 @@
 class V1::BartersController < ApplicationController
+	before_action :find_barter, only:[:show, :destroy]
+
 	def index
-		barters = Barter.all
-		render json:  barters, status: :ok
+		if params[:status] == "pending"
+			barters = Barter.where(status: "pending")
+		elsif params[:status] == "process"
+			barters = Barter.where(status: "process")
+		elsif params[:status] == "done"
+			barters = Barter.where(status: "done")
+		else
+			barters = Barter.all
+		end
+			barters= barters.map{|val|
+				{
+					:id => val.id,
+					:name => val.product_barter.name, 
+					:picture => val.product_barter.picture,
+					:description => val.product_barter.description,
+					:user_product => val.product.user_id,
+					:user_product_barter => val.product_barter.user_id,
+				}
+			}
+		render json: barters, status: :ok
 	end
 
 	def create
@@ -15,13 +35,11 @@ class V1::BartersController < ApplicationController
 	end
 
 	def show
-		barters = Barter.find(params[:id])
-		render json: barters, status: :ok
+		render json: @barters, status: :ok
 	end
 
 	def update
 		barters = Barter.find(params[:id])
-
 		if barters.update(barter_params)
 			render json: barters, status: :ok
 		else
@@ -38,6 +56,15 @@ class V1::BartersController < ApplicationController
 	private
 	
 	def barter_params
-		params.require(:barter).permit(:name)
+			params.require(:barter).permit(
+			:name,
+			:description, 
+			:picture,
+			:status
+			)
+	end
+
+	def find_barter
+		@barters = Barter.find(params[:id])
 	end
 end
