@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
 
-mount_base64_uploader :picture, PictureUploader
+	mount_base64_uploader :picture, PictureUploader
 
 	enum product_type: {
 		product: 'Product',
