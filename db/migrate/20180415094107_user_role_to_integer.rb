@@ -4,9 +4,9 @@ class UserRoleToInteger < ActiveRecord::Migration[5.1]
   	add_column("users", "gender_temp", :integer)
   	User.all.map do |data|
   		status = [ "admin", "seller", "customer" ] 
-  		data.role_temp = status.index(data.role)
+  		data.update(role_temp: status.index(data.role))
   		gender = [ "male", "female" ]
-  		data.gender_temp = status.index(data.gender) 
+  		data.update(gender_temp: status.index(data.gender))
   	end
   	remove_column("users", "role")
   	remove_column("users", "gender")
