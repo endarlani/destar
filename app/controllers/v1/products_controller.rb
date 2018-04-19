@@ -1,5 +1,7 @@
 class V1::ProductsController < ApplicationController
+	load_and_authorize_resource
 	before_action :find_product, only:[:show, :update, :destroy]
+	
 	def index
 		if params[:status] == "pending"
 			products = Product.where(status: "pending")
