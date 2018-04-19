@@ -48,7 +48,7 @@ class V1::ProductsController < ApplicationController
 	def show
 		render json: @products, 
 			   include: :user, 
-			   only: [:picture, :name, :description], 
+			   only: [:picture, :name, :description, :highest_price], 
 			   status: :ok
 	end
 
