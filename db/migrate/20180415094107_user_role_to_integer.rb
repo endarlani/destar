@@ -25,7 +25,7 @@ class UserRoleToInteger < ActiveRecord::Migration[5.1]
   	end
   	remove_column("users", "role")
   	remove_column("users", "gender")
-  	change_column_name("users", "role_temp", "role")
-  	change_column_name("users", "gender_temp", "gender")
+  	change_column("users", "role_temp", "role")
+  	change_column("users", "gender_temp", "gender")
   end
 end
