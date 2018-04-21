@@ -13,12 +13,13 @@ class V1::UsersController < ApplicationController
 
 	def create
 		user = User.new(user_params)
-		if user.save
-			user = user.as_json(except: [:password_digest]).merge(village: user.village.as_json(only: [:id,:name]))
-			render json: user, status: :created
-		else
-			render json: {error: user.errors}, status: :unprocessable_entity
-		end
+		render json: user_params, status: :created
+		# if user.save
+		# 	user = user.as_json(except: [:password_digest]).merge(village: user.village.as_json(only: [:id,:name]))
+		# 	render json: user, status: :created
+		# else
+		# 	render json: {error: user.errors}, status: :unprocessable_entity
+		# end
 	end
 
 	def show
@@ -46,7 +47,7 @@ class V1::UsersController < ApplicationController
 	def login
 		user = User.find_by(phone: params[:phone])
 		if(user && user.authenticate(params[:password]))
-			token =  JWT.encode({user_id: user.id}, Rails.application.secrets.secret_key_base)
+			token =  JWT.encode({user_id: user.id, exp: 30.days.from_now.to_i}, Rails.application.secrets.secret_key_base)
 			render json:  user.as_json(only: [:name]).merge(token: token), status: 200
 		elsif !user
 			render json: {status: "not found", error: "User not found"}, status: 404
