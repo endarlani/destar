@@ -36,7 +36,7 @@ class V1::ProductsController < ApplicationController
 
 	def create
 		products = Product.new(product_params)
-
+			products.user_id = current_user.id
 		if products.save
 			render json: products, status: :created
 		else
