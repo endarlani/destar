@@ -1,5 +1,7 @@
 class V1::ProductsController < ApplicationController
+	load_and_authorize_resource
 	before_action :find_product, only:[:show, :update, :destroy]
+	
 	def index
 		if params[:status] == "pending"
 			products = Product.where(status: "pending")
@@ -34,7 +36,7 @@ class V1::ProductsController < ApplicationController
 
 	def create
 		products = Product.new(product_params)
-
+			products.user_id = current_user.id
 		if products.save
 			render json: products, status: :created
 		else
@@ -46,7 +48,7 @@ class V1::ProductsController < ApplicationController
 	def show
 		render json: @products, 
 			   include: :user, 
-			   only: [:picture, :name, :description], 
+			   only: [:picture, :name, :description, :highest_price], 
 			   status: :ok
 	end
 

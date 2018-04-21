@@ -5,8 +5,9 @@ class V1::ProductBartersController < ApplicationController
 					:id => val.id,
 					:picture => val.picture,
 					:name => val.name,
-					:description => val.description,
-					:user => val.user.name
+					:user => val.user.name,
+					:quantity => val.quantity,
+					:satuan => val.satuan
 				}
 			}
 		render json:  product_barters, status: :ok

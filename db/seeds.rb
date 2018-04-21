@@ -7,10 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # villages = Village.create([{ name:'Tanjungsari'}, { name: 'Kranggan'}])
-villages = Village.all
+# villages = Village.all
 
-users = User.create([
-	{name:"Admin", role:"admin", password:"admin123", phone:"12345", gender:"male", village: villages.first}
+# users = User.create([
+# 	{name:"Admin", role:"admin", password:"admin123", phone:"12345", gender:"male", village: villages.first}
 # 	{name:"Jojo Widodo", role:"seller", password:"jojo123", phone:"0808979809", gender:"male", village: villages.first},
 # 	{name:"Sugeng Wijoyo", role:"seller", password:"sugeng123", phone:"0897099754", gender:"male", village: villages.first},
 # 	{name:"Nur Ningsih", role:"seller", password:"ningsih123", phone:"0878172637", gender:"female", village: villages.first},
@@ -22,7 +22,7 @@ users = User.create([
 # 	{name:"Uly Lailiya", role:"customer", password:"uly123", phone:"08962345642", gender:"female", village: villages.first},
 # 	{name:"Burhanudin Yusuf", role:"customer", password:"yusuf123", phone:"08129582372", gender:"male", village: villages.first},
 # 	{name:"Arif Rahman", role:"customer", password:"arif123", phone:"082234538294", gender:"male", village: villages.first}
-])
+# ])
 
 # products = Product.create ([
 # 	{product_type:"Product", name:"Sapi", highest_price:"10000000", status:"pending", description:"Harga sapi perekor", user_id:2, village_id:1},
@@ -80,6 +80,26 @@ users = User.create([
 # 	{name:"Tepung", description:"Tepung 10kg", user_id:3}
 
 # ])
+PB = ProductBarter.find(1)
+# PB2 = ProductBarter.find(2)
+# PB3 = ProductBarter.find(3)
+# PB4 = ProductBarter.find(4)
+# PB5 = ProductBarter.find(5)
+# PB6 = ProductBarter.find(6)
+# PB7 = ProductBarter.find(7)
+# PB8 = ProductBarter.find(8)
+# PB9 = ProductBarter.find(9)
+
+PB.update(quantity:1, satuan: "Kg")
+# PB2.update(quantity:3, satuan: "Kg")
+# PB3.update(quantity:1, satuan: "Ekor")
+# PB4.update(quantity:5, satuan: "Ekor")
+# PB5.update(quantity:7, satuan: "Kg")
+# PB6.update(quantity:2, satuan: "Kg")
+# PB7.update(quantity:1, satuan: "Karung")
+# PB8.update(quantity:1, satuan: "Buah")
+# PB9.update(quantity:4, satuan: "Kg")
+
 
 # barters = Barter.create ([
 # 	{product_barter_id:1, product_id:12, status:"done"},
@@ -94,24 +114,24 @@ users = User.create([
 # ])
 
 
-users1 = User.find(1)
-users2 = User.find(2)
-users3 = User.find(3)
-users4 = User.find(4)
-users5 = User.find(5)
-users6 = User.find(6)
-users7 = User.find(7)
-users8 = User.find(8)
-users9 = User.find(9)
-users10 = User.find(10)
+# users1 = User.find(1)
+# users2 = User.find(2)
+# users3 = User.find(3)
+# users4 = User.find(4)
+# users5 = User.find(5)
+# users6 = User.find(6)
+# users7 = User.find(7)
+# users8 = User.find(8)
+# users9 = User.find(9)
+# users10 = User.find(10)
 
-users2.update(role:1, gender: 0)
-users2.update(role:1, gender: 0)
-users3.update(role:1, gender: 1)
-users4.update(role:1, gender: 0)
-users5.update(role:1, gender: 0)
-users6.update(role:1, gender: 1)
-users7.update(role:2, gender: 0)
-users8.update(role:2, gender: 1)
-users9.update(role:2, gender: 0)
-users10.update(role:2, gender: 0)
+# users2.update(role:1, gender: 0)
+# users2.update(role:1, gender: 0)
+# users3.update(role:1, gender: 1)
+# users4.update(role:1, gender: 0)
+# users5.update(role:1, gender: 0)
+# users6.update(role:1, gender: 1)
+# users7.update(role:2, gender: 0)
+# users8.update(role:2, gender: 1)
+# users9.update(role:2, gender: 0)
+# users10.update(role:2, gender: 0)

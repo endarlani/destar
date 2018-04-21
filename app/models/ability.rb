@@ -34,6 +34,7 @@ class Ability
     elsif user.seller?
         can :read, :all
         can :token, User
+        can :create, Product
         can :update, User, id: user.id
         can :manage, Product, user_id: user.id
         can :update, Barter do |barter|
